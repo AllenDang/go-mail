@@ -102,7 +102,8 @@ func (self *Message) Send() error {
     from = Config.From.Address
   }
   addr := fmt.Sprintf("%s:%d", Config.Host, Config.Port)
-  auth := smtp.PlainAuth("", Config.Username, Config.Password, Config.Host)
+  // auth := smtp.PlainAuth("", Config.Username, Config.Password, Config.Host)
+  auth := LoginAuth(Config.Username, Config.Password)
   return smtp.SendMail(addr, auth, from, to, []byte(self.String()))
 }
 
